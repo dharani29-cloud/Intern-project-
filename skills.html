@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Skills - CareerTrack</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 250px;
+            height: 100vh;
+
+            background: linear-gradient(
+                180deg,
+                #6c5ce7,
+                #5145cd
+            );
+
+            color: white;
+            padding: 25px 15px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo h2 {
+            font-size: 24px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 8px 0;
+        }
+
+        .menu a {
+            display: block;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .menu .active {
+            background: rgba(255,255,255,0.2);
+        }
+
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            padding: 25px 35px;
+        }
+
+
+        /* TOP BAR */
+
+        .topbar {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .search {
+            width: 350px;
+
+            background: white;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            border: 1px solid #eee;
+
+            outline: none;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #6c5ce7;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+
+        /* TITLE */
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+        }
+
+
+        /* CARDS */
+
+        .card {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+
+        /* SKILLS */
+
+        .skills-container {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+        .skill {
+            background: #eeeaff;
+
+            color: #5b4bd8;
+
+            padding: 9px 15px;
+
+            border-radius: 20px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        /* INPUT */
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 15px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #6c5ce7;
+        }
+
+
+        /* BUTTON */
+
+        .save-btn {
+            margin-top: 18px;
+
+            background: linear-gradient(
+                135deg,
+                #6c5ce7,
+                #5145cd
+            );
+
+            color: white;
+
+            border: none;
+
+            padding: 13px 25px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow: 0 5px 15px rgba(108,92,231,0.3);
+        }
+
+
+        /* INFO */
+
+        .info-box {
+            background: #f4f2ff;
+
+            border-left: 4px solid #6c5ce7;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            color: #555;
+
+            font-size: 14px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+                padding: 20px;
+            }
+
+            .search {
+                width: 220px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+
+            <h2>🚀 CareerTrack</h2>
+
+            <p>Build Your Career</p>
+
+        </div>
+
+
+        <ul class="menu">
+
+            <li>
+                <a href="/dashboard?student_id={{ student[0] }}">
+                    🏠 Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/profile?student_id={{ student[0] }}">
+                    👤 My Profile
+                </a>
+            </li>
+
+            <li>
+                <a class="active"
+                   href="/skills?student_id={{ student[0] }}">
+                    💡 My Skills
+                </a>
+            </li>
+
+            <li>
+                <a href="/skill-gap?student_id={{ student[0] }}">
+                    📊 Skill Gap
+                </a>
+            </li>
+
+            <li>
+                <a href="/internships?student_id={{ student[0] }}">
+                    💼 Internships
+                </a>
+            </li>
+
+            <li>
+                <a href="/recommendations?student_id={{ student[0] }}">
+                    ⭐ Career Recommendations
+                </a>
+            </li>
+
+            <li>
+                <a href="/courses?student_id={{ student[0] }}">
+                    📚 Courses
+                </a>
+            </li>
+
+            <li>
+                <a href="/settings?student_id={{ student[0] }}">
+                    ⚙️ Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main">
+
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <input
+                class="search"
+                type="text"
+                placeholder="Search skills, courses, internships..."
+            >
+
+            <div class="user">
+
+                <div class="avatar">
+                    {{ student[1][0]|upper }}
+                </div>
+
+                <strong>
+                    {{ student[1] }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="page-title">
+
+            <h1>💡 My Skills</h1>
+
+            <p>
+                Manage your technical skills and keep your profile updated.
+            </p>
+
+        </div>
+
+
+        <!-- CURRENT SKILLS -->
+
+        <div class="card">
+
+            <h2>✨ Your Current Skills</h2>
+
+            <p>
+                These are the skills currently saved in your profile.
+            </p>
+
+
+            <div class="skills-container">
+
+                {% if student[5] %}
+
+                    {% for skill in student[5].split(',') %}
+
+                        {% if skill.strip() %}
+
+                            <span class="skill">
+                                {{ skill.strip() }}
+                            </span>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <p>
+                        No skills added yet.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- UPDATE SKILLS -->
+
+        <div class="card">
+
+            <h2>🛠️ Update Your Skills</h2>
+
+            <p>
+                Add or update your technical skills below.
+            </p>
+
+
+            <form method="POST">
+
+                <input
+                    type="hidden"
+                    name="student_id"
+                    value="{{ student[0] }}"
+                >
+
+
+                <label>
+                    Your Skills
+                </label>
+
+                <input
+                    type="text"
+                    name="skills"
+                    value="{{ student[5] or '' }}"
+                    placeholder="Example: Python, Java, SQL, Git, HTML, CSS"
+                >
+
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    💾 Save Skills
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- TIP -->
+
+        <div class="info-box">
+
+            💡 <strong>Tip:</strong>
+            Add skills separated by commas.
+            For example:
+            <strong>Python, SQL, Git, Flask</strong>
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>

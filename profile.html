@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerTrack - My Profile</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fc;
+            color: #172554;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 270px;
+            min-height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            padding: 28px 16px;
+
+            background: linear-gradient(
+                180deg,
+                #5b21b6 0%,
+                #4338ca 55%,
+                #2563eb 100%
+            );
+
+            color: white;
+        }
+
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 0 18px;
+
+            margin-bottom: 42px;
+        }
+
+
+        .logo-icon {
+            font-size: 34px;
+        }
+
+
+        .logo-text h2 {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+
+        .logo-text p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 15px 20px;
+
+            border-radius: 14px;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .menu-item:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+
+        .menu-item.active {
+            background: white;
+            color: #2563eb;
+        }
+
+
+        .menu-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 19px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 270px;
+
+            width: calc(100% - 270px);
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           TOPBAR
+        ========================= */
+
+        .topbar {
+            height: 76px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 36px;
+
+            border-bottom: 1px solid #edf0f7;
+        }
+
+
+        .search-box {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            width: 350px;
+
+            color: #94a3b8;
+        }
+
+
+        .search-box input {
+            border: none;
+            outline: none;
+
+            width: 100%;
+
+            font-family: "Poppins", sans-serif;
+            font-size: 13px;
+        }
+
+
+        .search-icon {
+            font-size: 23px;
+        }
+
+
+        /* =========================
+           USER
+        ========================= */
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+
+        .notification {
+            position: relative;
+            font-size: 24px;
+        }
+
+
+        .notification-badge {
+            position: absolute;
+
+            top: -7px;
+            right: -7px;
+
+            width: 19px;
+            height: 19px;
+
+            border-radius: 50%;
+
+            background: #ef4444;
+
+            color: white;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .user-area {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            color: #1e3a8a;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #2563eb
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            padding: 30px;
+        }
+
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+
+        .page-heading h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+
+        .page-heading p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           PROFILE CARD
+        ========================= */
+
+        .profile-card {
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 8px 25px rgba(15,23,42,0.05);
+        }
+
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+
+            gap: 20px;
+
+            padding-bottom: 25px;
+
+            border-bottom: 1px solid #eef2f7;
+        }
+
+
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #2563eb
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+
+        .profile-header h2 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+
+        .profile-header p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+
+        /* =========================
+           INFORMATION
+        ========================= */
+
+        .info-title {
+            font-size: 18px;
+
+            margin: 25px 0 18px;
+        }
+
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .info-box {
+            background: #f8fafc;
+
+            border-radius: 15px;
+
+            padding: 18px;
+        }
+
+
+        .info-label {
+            font-size: 11px;
+
+            color: #64748b;
+
+            margin-bottom: 6px;
+        }
+
+
+        .info-value {
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #172554;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-section {
+            margin-top: 25px;
+        }
+
+
+        .skills-section h2 {
+            font-size: 18px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .skills {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+
+        .skill {
+            padding: 9px 18px;
+
+            border-radius: 25px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+            margin-top: 30px;
+
+            display: flex;
+
+            gap: 12px;
+        }
+
+
+        .button {
+            padding: 12px 22px;
+
+            border-radius: 12px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .primary-button {
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #2563eb
+            );
+
+            color: white;
+        }
+
+
+        .secondary-button {
+            background: #eef2ff;
+
+            color: #4338ca;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 75px;
+                padding: 25px 10px;
+            }
+
+
+            .logo-text {
+                display: none;
+            }
+
+
+            .logo-area {
+                justify-content: center;
+                padding: 0;
+            }
+
+
+            .menu-item {
+                justify-content: center;
+                padding: 14px;
+            }
+
+
+            .menu-item span:last-child {
+                display: none;
+            }
+
+
+            .main {
+                margin-left: 75px;
+
+                width: calc(100% - 75px);
+            }
+
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .content {
+                padding: 18px;
+            }
+
+
+            .profile-card {
+                padding: 20px;
+            }
+
+
+            .profile-header {
+                align-items: flex-start;
+            }
+
+
+            .search-box {
+                width: 150px;
+            }
+
+
+            .user-name {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo-area">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+
+            <div class="logo-text">
+
+                <h2>CareerTrack</h2>
+
+                <p>Student Portal</p>
+
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+
+            <a
+                href="{{ url_for('dashboard', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('profile', student_id=student[0]) }}"
+                class="menu-item active"
+            >
+                <span class="menu-icon">👤</span>
+                <span>My Profile</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('skills', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">💻</span>
+                <span>My Skills</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('skill_gap', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">📊</span>
+                <span>Skill Gap</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('internships', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">💼</span>
+                <span>Internships</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('recommendations', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">🎯</span>
+                <span>Career Recommendations</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('settings') }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+
+                <input
+                    type="text"
+                    placeholder="Search anything..."
+                >
+
+            </div>
+
+
+            <div class="top-right">
+
+
+                <div class="notification">
+
+                    🔔
+
+                    <span class="notification-badge">
+                        3
+                    </span>
+
+                </div>
+
+
+                <div class="user-area">
+
+
+                    <div class="avatar">
+
+                        {{ student[1][0]|upper }}
+
+                    </div>
+
+
+                    <span class="user-name">
+
+                        {{ student[1] }}
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- CONTENT -->
+
+        <div class="content">
+
+
+            <div class="page-heading">
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    View your personal and academic information.
+                </p>
+
+            </div>
+
+
+
+            <!-- PROFILE CARD -->
+
+            <div class="profile-card">
+
+
+                <div class="profile-header">
+
+
+                    <div class="profile-avatar">
+
+                        {{ student[1][0]|upper }}
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            {{ student[1] }}
+                        </h2>
+
+                        <p>
+                            Student • CareerTrack
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <h2 class="info-title">
+                    Personal Information
+                </h2>
+
+
+                <div class="info-grid">
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Full Name
+                        </div>
+
+                        <div class="info-value">
+                            {{ student[1] }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Email
+                        </div>
+
+                        <div class="info-value">
+                            {{ student[2] }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            College
+                        </div>
+
+                        <div class="info-value">
+
+                            {% if student[4] %}
+
+                                {{ student[4] }}
+
+                            {% else %}
+
+                                Not added
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Student ID
+                        </div>
+
+                        <div class="info-value">
+                            {{ student[0] }}
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- SKILLS -->
+
+                <div class="skills-section">
+
+
+                    <h2>
+                        My Skills
+                    </h2>
+
+
+                    <div class="skills">
+
+
+                        {% if student[5] %}
+
+
+                            {% for skill in student[5].split(',') %}
+
+
+                                {% if skill.strip() %}
+
+                                    <span class="skill">
+
+                                        {{ skill.strip() }}
+
+                                    </span>
+
+                                {% endif %}
+
+
+                            {% endfor %}
+
+
+                        {% else %}
+
+                            <span class="skill">
+                                No skills added yet
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="buttons">
+
+
+                    <a
+                        href="{{ url_for('skills', student_id=student[0]) }}"
+                        class="button primary-button"
+                    >
+                        Manage My Skills
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('dashboard', student_id=student[0]) }}"
+                        class="button secondary-button"
+                    >
+                        Back to Dashboard
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Settings - CareerTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7ff;
+        }
+
+        .settings-page {
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .settings-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .settings-header {
+            margin-bottom: 30px;
+        }
+
+        .settings-header h1 {
+            margin: 0;
+            color: #222;
+            font-size: 32px;
+        }
+
+        .settings-header p {
+            color: #777;
+            margin-top: 8px;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .settings-card h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .setting-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .setting-info h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .setting-info p {
+            margin: 5px 0 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            color: #764ba2;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 22px;
+            background: #ff4d6d;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .logout-btn:hover {
+            background: #e6395c;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="settings-page">
+
+    <div class="settings-container">
+
+        <a href="/dashboard" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Dashboard
+        </a>
+
+
+        <div class="settings-header">
+
+            <h1>Settings</h1>
+
+            <p>
+                Manage your CareerTrack account and preferences.
+            </p>
+
+        </div>
+
+
+        <!-- ACCOUNT SETTINGS -->
+
+        <div class="settings-card">
+
+            <h2>Account Settings</h2>
+
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>My Profile</h3>
+
+                        <p>
+                            View and manage your student profile.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <a href="/profile">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>My Skills</h3>
+
+                        <p>
+                            Update your technical skills.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <a href="/skills">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAREER SETTINGS -->
+
+        <div class="settings-card">
+
+            <h2>Career</h2>
+
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>Career Recommendations</h3>
+
+                        <p>
+                            View careers matching your skills.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <a href="/recommendations">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <div class="setting-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>Recommended Courses</h3>
+
+                        <p>
+                            Learn skills required for your career.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <a href="/courses">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACCOUNT -->
+
+        <div class="settings-card">
+
+            <h2>Account</h2>
+
+            <p>
+                When you are finished using CareerTrack,
+                you can safely logout from your account.
+            </p>
+
+            <a href="/logout" class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

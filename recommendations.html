@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Career Recommendations | CareerTrack</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7ff;
+            color: #1f2937;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .dashboard-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .dashboard-link:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 86%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-heading h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+            color: #252b48;
+        }
+
+        .page-heading p {
+            color: #6b7280;
+            font-size: 17px;
+        }
+
+        /* CAREER CARD */
+
+        .career-card {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(80, 70, 150, 0.10);
+            border: 1px solid #ecebff;
+            transition: 0.3s;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(80, 70, 150, 0.16);
+        }
+
+        .best-card {
+            border: 2px solid #7c5cff;
+        }
+
+        /* CARD TOP */
+
+        .career-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .career-info {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .career-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .career-info h2 {
+            font-size: 25px;
+            color: #252b48;
+            margin-bottom: 5px;
+        }
+
+        .career-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* MATCH SCORE */
+
+        .match-score {
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .match-score strong {
+            display: block;
+            font-size: 30px;
+            color: #6d4aff;
+        }
+
+        .match-score span {
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* PROGRESS BAR */
+
+        .progress-area {
+            margin-top: 25px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eeeef7;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 20px;
+        }
+
+        /* SKILLS */
+
+        .skills-section {
+            margin-top: 25px;
+        }
+
+        .skills-section h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #374151;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: #f0edff;
+            color: #6246d9;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* BEST MATCH */
+
+        .best-match {
+            margin-top: 22px;
+            background: #fff8e6;
+            border: 1px solid #ffe2a8;
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: #805b00;
+            font-size: 14px;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .primary-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            background: #f0edff;
+            color: #6246d9;
+        }
+
+        .secondary-button:hover {
+            background: #e5e0ff;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #6246d9;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px 5%;
+            }
+
+            .container {
+                width: 92%;
+                margin-top: 30px;
+            }
+
+            .page-heading h1 {
+                font-size: 30px;
+            }
+
+            .career-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .match-score {
+                text-align: left;
+            }
+
+            .career-card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        🎓 CareerTrack
+    </div>
+
+    <a
+        href="/dashboard?student_id={{ student[0] }}"
+        class="dashboard-link"
+    >
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="page-heading">
+
+        <h1>🎯 Career Recommendations</h1>
+
+        <p>
+            Discover career paths that match your current skills.
+        </p>
+
+    </div>
+
+
+    {% for career in career_results %}
+
+    <div class="career-card {% if loop.first %}best-card{% endif %}">
+
+
+        <div class="career-top">
+
+            <div class="career-info">
+
+                <div class="career-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <h2>
+                        {{ career.career }}
+                    </h2>
+
+                    <p>
+                        Career opportunity based on your current skill profile
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="match-score">
+
+                <strong>
+                    {{ career.match_percentage }}%
+                </strong>
+
+                <span>
+                    Skill Match
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-area">
+
+            <div class="progress-label">
+
+                <span>
+                    Skill compatibility
+                </span>
+
+                <span>
+                    {{ career.match_percentage }}%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    data-width="{{ career.match_percentage }}"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        {% if career.matched_skills %}
+
+        <div class="skills-section">
+
+            <h3>
+                ✅ Your Matching Skills
+            </h3>
+
+            <div class="skills">
+
+                {% for skill in career.matched_skills %}
+
+                <span class="skill-badge">
+                    {{ skill | title }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if loop.first %}
+
+        <div class="best-match">
+
+            ⭐ <strong>Best Match!</strong>
+
+            This career currently has the highest skill match
+            based on your profile.
+
+        </div>
+
+        {% endif %}
+
+
+        <div class="buttons">
+
+            <a
+                href="/skill-gap?student_id={{ student[0] }}"
+                class="button primary-button"
+            >
+                🎯 View Skill Gap
+            </a>
+
+
+            <a
+                href="/courses?student_id={{ student[0] }}"
+                class="button secondary-button"
+            >
+                📚 Explore Courses
+            </a>
+
+        </div>
+
+
+    </div>
+
+    {% endfor %}
+
+
+    <div class="footer">
+
+        <a
+            href="/dashboard?student_id={{ student[0] }}"
+        >
+            🏠 Back to Dashboard
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    document.querySelectorAll(".progress-fill").forEach(function(bar) {
+
+        bar.style.width = bar.dataset.width + "%";
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

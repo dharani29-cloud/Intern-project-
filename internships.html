@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internships - CareerTrack</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 250px;
+            height: 100vh;
+
+            background: linear-gradient(
+                180deg,
+                #6c5ce7,
+                #5145cd
+            );
+
+            color: white;
+
+            padding: 25px 15px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo h2 {
+            font-size: 24px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 8px 0;
+        }
+
+        .menu a {
+            display: block;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .menu .active {
+            background: rgba(255,255,255,0.2);
+        }
+
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+
+            padding: 25px 35px;
+        }
+
+
+        /* TOPBAR */
+
+        .topbar {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .search {
+            width: 350px;
+
+            background: white;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            border: 1px solid #eee;
+
+            outline: none;
+        }
+
+        .user {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #6c5ce7;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+
+        /* TITLE */
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+        }
+
+
+        /* INTERNSHIP GRID */
+
+        .internship-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 25px;
+        }
+
+
+        /* INTERNSHIP CARD */
+
+        .internship-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .internship-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.10);
+        }
+
+
+        /* COMPANY ICON */
+
+        .company-icon {
+
+            width: 55px;
+            height: 55px;
+
+            border-radius: 14px;
+
+            background: #eeeaff;
+
+            color: #5b4bd8;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .internship-card h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+        .company {
+
+            color: #6c5ce7;
+
+            font-weight: bold;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* DETAILS */
+
+        .details {
+
+            margin-bottom: 18px;
+        }
+
+        .detail {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin: 10px 0;
+
+            color: #666;
+
+            font-size: 14px;
+        }
+
+
+        /* SKILLS */
+
+        .skills-title {
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        .skills {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-bottom: 20px;
+        }
+
+        .skill {
+
+            background: #f0edff;
+
+            color: #5b4bd8;
+
+            padding: 6px 10px;
+
+            border-radius: 15px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* APPLY BUTTON */
+
+        .apply-btn {
+
+            display: block;
+
+            width: 100%;
+
+            text-align: center;
+
+            padding: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6c5ce7,
+                    #5145cd
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .apply-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px
+                rgba(108,92,231,0.3);
+        }
+
+
+        /* EMPTY */
+
+        .empty {
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            color: #777;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+
+                padding: 20px;
+            }
+
+            .search {
+                width: 220px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+
+            <h2>🚀 CareerTrack</h2>
+
+            <p>Build Your Career</p>
+
+        </div>
+
+
+        <ul class="menu">
+
+            <li>
+                <a href="/dashboard?student_id={{ student[0] }}">
+                    🏠 Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/profile?student_id={{ student[0] }}">
+                    👤 My Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="/skills?student_id={{ student[0] }}">
+                    💡 My Skills
+                </a>
+            </li>
+
+            <li>
+                <a href="/skill-gap?student_id={{ student[0] }}">
+                    📊 Skill Gap
+                </a>
+            </li>
+
+            <li>
+                <a class="active"
+                   href="/internships?student_id={{ student[0] }}">
+                    💼 Internships
+                </a>
+            </li>
+
+            <li>
+                <a href="/recommendations?student_id={{ student[0] }}">
+                    ⭐ Career Recommendations
+                </a>
+            </li>
+
+            <li>
+                <a href="/courses?student_id={{ student[0] }}">
+                    📚 Courses
+                </a>
+            </li>
+
+            <li>
+                <a href="/settings?student_id={{ student[0] }}">
+                    ⚙️ Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <input
+                class="search"
+                type="text"
+                placeholder="Search skills, courses, internships..."
+            >
+
+
+            <div class="user">
+
+                <div class="avatar">
+                    {{ student[1][0]|upper }}
+                </div>
+
+                <strong>
+                    {{ student[1] }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <div class="page-title">
+
+            <h1>💼 Internships</h1>
+
+            <p>
+                Explore internship opportunities that match your career goals.
+            </p>
+
+        </div>
+
+
+        <!-- INTERNSHIPS -->
+
+        {% if internships %}
+
+        <div class="internship-grid">
+
+
+            {% for internship in internships %}
+
+
+            <div class="internship-card">
+
+
+                <div class="company-icon">
+                    💼
+                </div>
+
+
+                <h2>
+                    {{ internship.title }}
+                </h2>
+
+
+                <div class="company">
+                    🏢 {{ internship.company }}
+                </div>
+
+
+                <div class="details">
+
+                    <div class="detail">
+                        📍
+                        <span>
+                            {{ internship.location }}
+                        </span>
+                    </div>
+
+
+                    <div class="detail">
+                        ⏳
+                        <span>
+                            {{ internship.duration }}
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="skills-title">
+                    🛠️ Required Skills
+                </div>
+
+
+                <div class="skills">
+
+                    {% for skill in internship.skills.split(',') %}
+
+                        <span class="skill">
+                            {{ skill.strip() }}
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <a
+                    href="{{ internship.link }}"
+                    target="_blank"
+                    class="apply-btn"
+                >
+                    Apply Now →
+                </a>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <h2>
+                🔍 No internships available
+            </h2>
+
+            <p style="margin-top:10px;">
+                Check again later for new internship opportunities.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</body>
+
+</html>

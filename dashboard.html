@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerTrack - Student Dashboard</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f5f7fc;
+            color: #172554;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 270px;
+            min-height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            padding: 28px 16px;
+
+            background: linear-gradient(
+                180deg,
+                #5b21b6 0%,
+                #4338ca 55%,
+                #2563eb 100%
+            );
+
+            color: white;
+
+            overflow-y: auto;
+        }
+
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 0 18px;
+
+            margin-bottom: 42px;
+        }
+
+
+        .logo-icon {
+            font-size: 34px;
+        }
+
+
+        .logo-text h2 {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+
+        .logo-text p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 15px 20px;
+
+            border-radius: 14px;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .menu-item:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+
+        .menu-item.active {
+            background: white;
+            color: #2563eb;
+        }
+
+
+        .menu-icon {
+            width: 22px;
+            text-align: center;
+
+            font-size: 19px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 270px;
+
+            width: calc(100% - 270px);
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           TOPBAR
+        ========================= */
+
+        .topbar {
+            height: 76px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 36px;
+
+            border-bottom: 1px solid #edf0f7;
+        }
+
+
+        .search-box {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            width: 350px;
+
+            color: #94a3b8;
+        }
+
+
+        .search-icon {
+            font-size: 23px;
+        }
+
+
+        .search-box input {
+            border: none;
+            outline: none;
+
+            width: 100%;
+
+            font-family: "Poppins", sans-serif;
+            font-size: 13px;
+        }
+
+
+        .search-box input::placeholder {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           TOP RIGHT
+        ========================= */
+
+        .top-right {
+            display: flex;
+            align-items: center;
+
+            gap: 22px;
+        }
+
+
+        .notification {
+            position: relative;
+
+            font-size: 24px;
+        }
+
+
+        .notification-badge {
+            position: absolute;
+
+            top: -7px;
+            right: -7px;
+
+            width: 19px;
+            height: 19px;
+
+            border-radius: 50%;
+
+            background: #ef4444;
+
+            color: white;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .user-area {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            color: #1e3a8a;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #2563eb
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+
+        .arrow {
+            color: #64748b;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            padding: 28px 30px 50px;
+        }
+
+
+        /* =========================
+           WELCOME CARD
+        ========================= */
+
+        .welcome-card {
+            min-height: 228px;
+
+            border-radius: 23px;
+
+            padding: 38px 45px;
+
+            background: linear-gradient(
+                105deg,
+                #f0e2ff 0%,
+                #edf0ff 55%,
+                #e5f2ff 100%
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            overflow: hidden;
+        }
+
+
+        .welcome-content h1 {
+            font-size: 28px;
+
+            color: #172554;
+
+            margin-bottom: 10px;
+        }
+
+
+        .welcome-content p {
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            color: #334155;
+
+            margin-bottom: 18px;
+        }
+
+
+        .learning-badge {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            background: white;
+
+            padding: 10px 18px;
+
+            border-radius: 13px;
+
+            font-size: 12px;
+
+            color: #475569;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+
+        /* =========================
+           ILLUSTRATION
+        ========================= */
+
+        .hero-illustration {
+            width: 330px;
+            height: 190px;
+
+            position: relative;
+
+            margin-right: 20px;
+        }
+
+
+        .laptop {
+            position: absolute;
+
+            left: 45px;
+            bottom: 12px;
+
+            font-size: 65px;
+        }
+
+
+        .student {
+            position: absolute;
+
+            left: 130px;
+            bottom: 12px;
+
+            font-size: 95px;
+
+            line-height: 1;
+        }
+
+
+        .plant {
+            position: absolute;
+
+            right: 5px;
+            bottom: 10px;
+
+            font-size: 58px;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-card {
+            margin-top: 20px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 18px 25px;
+
+            min-height: 105px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 25px;
+
+            box-shadow:
+                0 8px 25px rgba(15,23,42,0.05);
+        }
+
+
+        .skills-title {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            min-width: 205px;
+        }
+
+
+        .skills-title-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #4f46e5
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 21px;
+        }
+
+
+        .skills-title h2 {
+            font-size: 18px;
+        }
+
+
+        .skill-list {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            flex: 1;
+
+            flex-wrap: wrap;
+        }
+
+
+        .skill-pill {
+            padding: 10px 24px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+
+        .skill-pill:nth-child(2) {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+
+        .skill-pill:nth-child(3) {
+            background: #fff1f2;
+            color: #e11d48;
+        }
+
+
+        .skill-pill:nth-child(4) {
+            background: #fff7ed;
+            color: #d97706;
+        }
+
+
+        .skill-pill:nth-child(5) {
+            background: #f5f3ff;
+            color: #7c3aed;
+        }
+
+
+        .skill-pill:nth-child(6) {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+
+        /* =========================
+           TOTAL SKILLS
+        ========================= */
+
+        .total-skills {
+            min-width: 105px;
+
+            padding: 10px;
+
+            border-radius: 14px;
+
+            background: #f3f6fc;
+
+            text-align: center;
+        }
+
+
+        .total-skills p {
+            font-size: 10px;
+
+            color: #64748b;
+
+            margin-bottom: 2px;
+        }
+
+
+        .total-skills strong {
+            font-size: 24px;
+
+            color: #2563eb;
+        }
+
+
+        /* =========================
+           QUICK ACTION TITLE
+        ========================= */
+
+        .section-title {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            margin: 32px 4px 17px;
+        }
+
+
+        .section-title span {
+            font-size: 23px;
+        }
+
+
+        .section-title h2 {
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           QUICK ACTIONS
+        ========================= */
+
+        .quick-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 16px;
+        }
+
+
+        .quick-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px 15px;
+
+            min-height: 155px;
+
+            text-align: center;
+
+            border: 1px solid #f0f2f8;
+
+            box-shadow:
+                0 7px 22px rgba(15,23,42,0.04);
+
+            transition: 0.25s;
+        }
+
+
+        .quick-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(15,23,42,0.09);
+        }
+
+
+        .quick-icon {
+            width: 58px;
+            height: 58px;
+
+            margin: 0 auto 13px;
+
+            border-radius: 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+
+        .icon-profile {
+            background: #fff7ed;
+        }
+
+
+        .icon-skills {
+            background: #eff6ff;
+        }
+
+
+        .icon-gap {
+            background: #ecfdf5;
+        }
+
+
+        .icon-intern {
+            background: #fff7ed;
+        }
+
+
+        .icon-career {
+            background: #fdf2f8;
+        }
+
+
+        .quick-card h3 {
+            font-size: 13px;
+
+            color: #172554;
+
+            margin-bottom: 5px;
+        }
+
+
+        .quick-card p {
+            font-size: 10px;
+
+            color: #94a3b8;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .sidebar {
+                width: 230px;
+            }
+
+            .main {
+                margin-left: 230px;
+                width: calc(100% - 230px);
+            }
+
+            .quick-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .skills-card {
+                flex-wrap: wrap;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 75px;
+
+                padding: 25px 10px;
+            }
+
+
+            .logo-text {
+                display: none;
+            }
+
+
+            .logo-area {
+                justify-content: center;
+
+                padding: 0;
+            }
+
+
+            .menu-item {
+                justify-content: center;
+
+                padding: 14px;
+            }
+
+
+            .menu-item span:last-child {
+                display: none;
+            }
+
+
+            .main {
+                margin-left: 75px;
+
+                width: calc(100% - 75px);
+            }
+
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+
+            .search-box {
+                width: 220px;
+            }
+
+
+            .hero-illustration {
+                display: none;
+            }
+
+
+            .welcome-card {
+                min-height: 220px;
+            }
+
+
+            .quick-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .skills-title {
+                min-width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .search-box {
+                width: 150px;
+            }
+
+
+            .user-name,
+            .arrow {
+                display: none;
+            }
+
+
+            .content {
+                padding: 18px 15px;
+            }
+
+
+            .welcome-card {
+                padding: 25px;
+            }
+
+
+            .welcome-content h1 {
+                font-size: 22px;
+            }
+
+
+            .quick-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo-area">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            <div class="logo-text">
+
+                <h2>CareerTrack</h2>
+
+                <p>Student Portal</p>
+
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+
+            <a
+                href="{{ url_for('dashboard', student_id=student[0]) }}"
+                class="menu-item active"
+            >
+                <span class="menu-icon">🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('profile', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">👤</span>
+                <span>My Profile</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('skills', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">💻</span>
+                <span>My Skills</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('skill_gap', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">📊</span>
+                <span>Skill Gap</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('internships', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">💼</span>
+                <span>Internships</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('recommendations', student_id=student[0]) }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">🎯</span>
+                <span>Career Recommendations</span>
+            </a>
+
+
+            <a
+                href="{{ url_for('settings') }}"
+                class="menu-item"
+            >
+                <span class="menu-icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    placeholder="Search anything..."
+                >
+
+            </div>
+
+
+            <div class="top-right">
+
+
+                <div class="notification">
+
+                    🔔
+
+                    <span class="notification-badge">
+                        3
+                    </span>
+
+                </div>
+
+
+                <div class="user-area">
+
+
+                    <div class="avatar">
+
+                        {{ student[1][0]|upper }}
+
+                    </div>
+
+
+                    <span class="user-name">
+
+                        {{ student[1] }}
+
+                    </span>
+
+
+                    <span class="arrow">
+                        ▼
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- PAGE CONTENT -->
+
+        <div class="content">
+
+
+            <!-- =========================
+                 WELCOME
+            ========================== -->
+
+            <section class="welcome-card">
+
+
+                <div class="welcome-content">
+
+
+                    <h1>
+                        Welcome back, {{ student[1] }}! 👋
+                    </h1>
+
+
+                    <p>
+                        Manage your skills, discover opportunities,
+                        <br>
+                        and build your career.
+                    </p>
+
+
+                    <div class="learning-badge">
+
+                        ⭐
+
+                        <span>
+                            Keep Learning, Keep Growing!
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="hero-illustration">
+
+                    <div class="laptop">
+                        💻
+                    </div>
+
+                    <div class="student">
+                        👩‍💻
+                    </div>
+
+                    <div class="plant">
+                        🪴
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 SKILLS
+            ========================== -->
+
+            <section class="skills-card">
+
+
+                <div class="skills-title">
+
+                    <div class="skills-title-icon">
+                        ⚡
+                    </div>
+
+                    <h2>
+                        Your Skills
+                    </h2>
+
+                </div>
+
+
+                <div class="skill-list">
+
+
+                    {% if student[5] %}
+
+                        {% for skill in student[5].split(',') %}
+
+                            {% if skill.strip() %}
+
+                                <span class="skill-pill">
+                                    {{ skill.strip().lower() }}
+                                </span>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <span class="skill-pill">
+                            Add your skills
+                        </span>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- TOTAL SKILLS -->
+
+                <div class="total-skills">
+
+                    <p>
+                        Total Skills
+                    </p>
+
+
+                    <strong>
+
+                        {% if student[5] %}
+
+                            {{ student[5].split(',')|length }}
+
+                        {% else %}
+
+                            0
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 QUICK ACTIONS
+            ========================== -->
+
+            <div class="section-title">
+
+                <span>
+                    🚀
+                </span>
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+            </div>
+
+
+
+            <section class="quick-grid">
+
+
+                <!-- PROFILE -->
+
+                <a
+                    href="{{ url_for('profile', student_id=student[0]) }}"
+                    class="quick-card"
+                >
+
+                    <div class="quick-icon icon-profile">
+                        📋
+                    </div>
+
+                    <h3>
+                        My Profile
+                    </h3>
+
+                    <p>
+                        View and update your profile
+                    </p>
+
+                </a>
+
+
+
+                <!-- SKILLS -->
+
+                <a
+                    href="{{ url_for('skills', student_id=student[0]) }}"
+                    class="quick-card"
+                >
+
+                    <div class="quick-icon icon-skills">
+                        💻
+                    </div>
+
+                    <h3>
+                        My Skills
+                    </h3>
+
+                    <p>
+                        Manage your technical skills
+                    </p>
+
+                </a>
+
+
+
+                <!-- SKILL GAP -->
+
+                <a
+                    href="{{ url_for('skill_gap', student_id=student[0]) }}"
+                    class="quick-card"
+                >
+
+                    <div class="quick-icon icon-gap">
+                        📊
+                    </div>
+
+                    <h3>
+                        Skill Gap
+                    </h3>
+
+                    <p>
+                        Find skills you need to learn
+                    </p>
+
+                </a>
+
+
+
+                <!-- INTERNSHIPS -->
+
+                <a
+                    href="{{ url_for('internships', student_id=student[0]) }}"
+                    class="quick-card"
+                >
+
+                    <div class="quick-icon icon-intern">
+                        💼
+                    </div>
+
+                    <h3>
+                        Internships
+                    </h3>
+
+                    <p>
+                        Explore internship opportunities
+                    </p>
+
+                </a>
+
+
+
+                <!-- CAREER -->
+
+                <a
+                    href="{{ url_for('recommendations', student_id=student[0]) }}"
+                    class="quick-card"
+                >
+
+                    <div class="quick-icon icon-career">
+                        🎯
+                    </div>
+
+                    <h3>
+                        Career Recommendations
+                    </h3>
+
+                    <p>
+                        Discover your best career paths
+                    </p>
+
+                </a>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>
